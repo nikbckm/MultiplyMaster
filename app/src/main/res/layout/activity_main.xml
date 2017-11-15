@@ -21,7 +21,7 @@
             android:layout_height="wrap_content"
             android:paddingTop="5dp"
             android:paddingBottom="5dp"
-            android:text="Udacity Multiplying Challenge"
+            android:text="Multiply Master"
             android:textAlignment="center"
             android:textSize="20sp"
             android:background="#ddd"
@@ -44,7 +44,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
-            android:text="You got one minute. \nCalculate as fast as you can!"
+            android:text="You got one minute. \nCalculate as fast as you can!\nReady?"
             android:layout_weight="1"
             android:textAlignment="center"
             android:textSize="24sp"
@@ -55,34 +55,50 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
             >
+
         <TextView
             android:id="@+id/score_textview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:background="#FFFFFF"
-            android:layout_marginRight="2dp"
             android:minHeight="60dp"
-            android:text="Score: 0"
+            android:text="Score:\n0"
+            android:textAlignment="center"
             android:textColor="#808080"
             android:textSize="16sp"
-            android:gravity="bottom|center"
+            android:layout_weight="1"
             />
+
+            <TextView
+                android:id="@+id/highscore_textview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="#FFFFFF"
+                android:minHeight="60dp"
+                android:text="Highscore:\n0"
+                android:textAlignment="center"
+                android:textColor="#808080"
+                android:textSize="16sp"
+                android:layout_weight="1"
+                />
 
         <TextView
             android:id="@+id/timer_textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_marginLeft="4dp"
             android:background="#FFFFFF"
             android:minHeight="60dp"
-            android:text="Time: 60s"
+            android:text="Time:\n60s"
             android:textColor="#808080"
             android:textSize="16sp"
             android:textAlignment="center"
-            android:gravity="bottom|center"/>
+            android:layout_weight="1"
+            />
+
         </LinearLayout>
     </LinearLayout>
 
