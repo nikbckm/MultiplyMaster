@@ -33,6 +33,8 @@ public class MainActivity extends AppCompatActivity {
     TextView score_textview;
     CountDownTimer mCountDownTimer;
     TextView timer_textView;
+    Boolean GameEnded = false;
+    Integer personal_highscore=0;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,7 +53,8 @@ public class MainActivity extends AppCompatActivity {
                 inputNumber = Integer.parseInt(userInput_textView.getText().toString());    // so then we got an int to compare
             }
 
-            if (tries == 0) {  // if first try START
+            if (tries == 0 || GameEnded) {  // if first try START   OR   GameEnded
+
                 mCountDownTimer = this.createTimer();
                 int number1 = (int) (Math.random() * 10) + 1;
                 int number2 = (int) (Math.random() * 10) + 1;
@@ -65,7 +68,8 @@ public class MainActivity extends AppCompatActivity {
                 score_textview = (TextView) findViewById(R.id.score_textview);
                 score_textview.setText("Your score:\n" + score);         //increase score
                 userInput_textView.setText("");
-            } else if (tries > 0 && tries < 5 && inputNumber == result) {  // if not first try and correct answer
+                    if (GameEnded) { GameEnded=false; }
+            } else if (tries > 0 && tries <= 5 && inputNumber == result) {  // if not first try and correct answer
                 int number1 = (int) (Math.random() * 10) + 1;
                 int number2 = (int) (Math.random() * 10) + 1;
 
@@ -78,9 +82,9 @@ public class MainActivity extends AppCompatActivity {
                 TextView score_textview = (TextView) findViewById(R.id.score_textview);
                 score_textview.setText("Your score:\n" + score);         //increase score
                 userInput_textView.setText("");
-            } else if (tries > 4 && tries < 10 && inputNumber == result) {  // difficulty level 2
-                int number1 = (int) (Math.random() * 10) + 1;
-                int number2 = (int) (Math.random() * 10) + 8;
+            } else if (tries >= 6 && tries <= 10 && inputNumber == result) {  // difficulty level 2
+                int number1 = (int) Math.floor(Math.random()*(15-9+1)+5);
+                int number2 = (int) Math.floor(Math.random()*(20-9+1)+9);
 
                 result = number1 * number2; // calc the result
                 MathTask = number1 + " * " + number2; // math task as string
@@ -91,21 +95,20 @@ public class MainActivity extends AppCompatActivity {
                 TextView score_textview = (TextView) findViewById(R.id.score_textview);
                 score_textview.setText("Your score:\n" + score);         //increase score
                 userInput_textView.setText("");
-            } else if (tries > 9 && inputNumber == result) {  // difficulty level 2
-                int number1 = (int) (Math.random() * 10) + 10;
-                int number2 = (int) (Math.random() * 10) + 6;
+            } else if (tries >10 && inputNumber == result) {  // difficulty level 3
+                int number1 = (int) Math.floor(Math.random()*(20-9+1)+9);
+                int number2 = (int) Math.floor(Math.random()*(20-9+1)+9);
 
                 result = number1 * number2; // calc the result
                 MathTask = number1 + " * " + number2; // math task as string
 
                 mathTask_textview.setText(MathTask); //setting the math task to textview
-                createMathTask_button.setText("Next Task!");
+                createMathTask_button.setText("Done!");
                 score++;
                 TextView score_textview = (TextView) findViewById(R.id.score_textview);
                 score_textview.setText("Your score:\n" + score);         //increase score
                 userInput_textView.setText("");
-            } else if (inputNumber != result && inputNumber != null) {
-                TextView h1 = (TextView) findViewById(R.id.h1);
+            } else if (inputNumber != result && inputNumber != null && GameEnded==false) {
                 endOfGame();
             }
 
@@ -114,32 +117,40 @@ public class MainActivity extends AppCompatActivity {
     }
 
         public CountDownTimer createTimer() {
-            return new CountDownTimer(60000, 1000) {
+                return new CountDownTimer(600000, 1000) {
+                    public void onTick(long millisUntilFinished) {
+                        timer_textView.setText("Time left:\n" + millisUntilFinished / 1000 + "s");
+                    }
 
-                public void onTick(long millisUntilFinished) {
-                    timer_textView.setText("Time left:\n" + millisUntilFinished / 1000 +"s");
-                }
-
-                public void onFinish() {
-                    endOfGame();
-                    //time_over=true;
-                }
-            }.start();
+                    public void onFinish() {                        //if game is over mCountDownTimer.cancel();
+                        endOfGame();
+                    }
+                }.start();
         }
 
+    public void endOfGame() {
+        inputNumber=null;
+        mCountDownTimer.cancel();
+        timer_textView.setText("End of Game!");
+        score_textview.setText("Your highscore:\n" + personal_highscore);
+        mathTask_textview.setText("Restart?");
+        userInput_textView.setText("");
+        createMathTask_button.setText("Restart!");
+        if (score>personal_highscore) {
+            personal_highscore=score;
+        }
+        Intent myIntent = new Intent(this, DisplayScore.class);
+        myIntent.putExtra("intVariableName", score);
+        startActivity(myIntent);
+        tries=-1;
+        score=-1;
+        GameEnded = true;
+    }
 
-     public void endOfGame(){
-         mCountDownTimer.cancel();
-         timer_textView.setText("End of Game!");
-         score_textview.setText("Last score:\n"+score);
-         createMathTask_button.setText("Restart");
-         mathTask_textview.setText("Restart?");
-         Intent myIntent = new Intent(this, DisplayScore.class);
-         myIntent.putExtra("intVariableName", score);
-         startActivity(myIntent);
-         tries=0;
-         score=0;
-     }
+
+
+
+
 
 
     public void btn_zero(View view){
@@ -234,6 +245,17 @@ public class MainActivity extends AppCompatActivity {
         }
     }
     public void btn_back(View view){
+        userInput_textView = findViewById(R.id.userInput_textView);
+        String str = userInput_textView.getText().toString();
+
+        if (str.length() > 0 ) {
+            str = str.substring(0, str.length() - 1);
+            userInput_textView.setText(str);
+        }
+
+    }
+
+    public void btn_cancel(View view){
         userInput_textView = findViewById(R.id.userInput_textView);
         userInput_textView.setText("");
 

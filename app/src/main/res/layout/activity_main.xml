@@ -21,11 +21,10 @@
             android:layout_height="wrap_content"
             android:paddingTop="5dp"
             android:paddingBottom="5dp"
-            android:text="Udacity Calc Challenge"
+            android:text="Udacity Multiplying Challenge"
             android:textAlignment="center"
-            android:textSize="30sp"
+            android:textSize="20sp"
             android:background="#ddd"
-            android:layout_weight="1"
             android:textColor="#333"
             android:textStyle=""/>
 
@@ -33,7 +32,7 @@
             android:id="@+id/mathTask_textview"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="10dp"
             android:text=""
             android:layout_weight="1"
             android:textAlignment="center"
@@ -44,19 +43,20 @@
             android:id="@+id/userInput_textView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:text="Ready?"
-            android:layout_weight="3"
+            android:layout_marginTop="5dp"
+            android:text="You got one minute. \nCalculate as fast as you can!"
+            android:layout_weight="1"
             android:textAlignment="center"
-            android:textSize="48sp"
+            android:textSize="24sp"
             android:textStyle="bold"
             android:textColor="#333"/>
+
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             >
-        <Button
+        <TextView
             android:id="@+id/score_textview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -66,9 +66,11 @@
             android:minHeight="60dp"
             android:text="Score: 0"
             android:textColor="#808080"
-            android:textSize="16sp" />
+            android:textSize="16sp"
+            android:gravity="bottom|center"
+            />
 
-        <Button
+        <TextView
             android:id="@+id/timer_textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -78,7 +80,9 @@
             android:minHeight="60dp"
             android:text="Time: 60s"
             android:textColor="#808080"
-            android:textSize="16sp" />
+            android:textSize="16sp"
+            android:textAlignment="center"
+            android:gravity="bottom|center"/>
         </LinearLayout>
     </LinearLayout>
 
@@ -94,8 +98,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
+            android:orientation="horizontal"
+            android:layout_weight="1">
 
 
             <Button
@@ -118,7 +122,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="3dp"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:layout_weight="1">
 
             <Button
                 android:id="@+id/btn_seven"
@@ -151,7 +156,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="2dp"
-                android:layout_marginRight="2dp"
                 android:layout_weight="1"
                 android:background="#ddd"
                 android:minHeight="60dp"
@@ -167,7 +171,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="2dp"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:layout_weight="1">
 
             <Button
                 android:id="@+id/btn_four"
@@ -200,7 +205,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="2dp"
-                android:layout_marginRight="2dp"
                 android:layout_weight="1"
                 android:background="#ddd"
                 android:minHeight="60dp"
@@ -216,7 +220,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="2dp"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:layout_weight="1">
 
             <Button
                 android:id="@+id/btn_one"
@@ -249,7 +254,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="2dp"
-                android:layout_marginRight="2dp"
                 android:layout_weight="1"
                 android:background="#ddd"
                 android:minHeight="60dp"
@@ -264,9 +268,21 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="2dp"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:layout_weight="1">
 
 
+            <Button
+                android:id="@+id/btn_cancel"
+                android:onClick="btn_cancel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="#ddd"
+                android:minHeight="60dp"
+                android:text="C"
+                android:textColor="#808080"
+                android:textSize="25sp" />
 
             <Button
                 android:id="@+id/btn_zero"
@@ -276,8 +292,8 @@
                 android:layout_weight="1"
                 android:background="#ddd"
                 android:minHeight="60dp"
-                android:text="0"
                 android:onClick="btn_zero"
+                android:text="0"
                 android:textColor="#333"
                 android:textSize="25sp" />
 
@@ -286,14 +302,14 @@
                 android:onClick="btn_back"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="2dp"
                 android:layout_weight="1"
                 android:background="#ddd"
-                android:layout_margin="2dp"
-                android:minHeight="70dp"
+                android:minHeight="60dp"
                 android:text="&lt;&lt;"
-                android:textColor="#333"
-                android:textSize="30sp"
-                android:textStyle="bold" />
+                android:textColor="#808080"
+                android:textSize="25sp"
+                />
 
 
         </LinearLayout>
